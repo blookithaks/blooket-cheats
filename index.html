@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GUI</title>
+    <style>
+        #gui {
+            background-color: black;
+            color: green;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding: 20px;
+            z-index: 9999;
+            border: 2px solid green;
+            border-radius: 10px;
+            width: 200px;
+            height: auto;
+        }
+        #drag {
+            background-color: green;
+            color: black;
+            border: none;
+            padding: 10px;
+            cursor: move;
+            border-radius: 5px;
+        }
+        input, button {
+            margin-top: 10px;
+            border: 2px solid green;
+            border-radius: 5px;
+            background-color: black;
+            color: green;
+        }
+        button {
+            padding: 10px;
+            cursor: pointer;
+        }
+        #close {
+            background-color: green;
+            color: black;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="gui">
+        <div id="drag">Drag</div>
+        <input placeholder="Game ID">
+        <input placeholder="Name">
+        <input placeholder="Amount">
+        <button id="start">Start Bot</button>
+        <button id="close">X</button>
+    </div>
+
+    <script>
+        (function () {
+            var e = document.getElementById("gui");
+            var s = document.getElementById("start");
+            var c = document.getElementById("close");
+
+            c.addEventListener("click", function () {
+                document.body.removeChild(e);
+            });
+
+            s.addEventListener("click", function () {
+                const e = async () => {
+                    let t = `${l}${Math.random().toString(36).slice(2, 7)}`;
+                    const { o: r, fbToken: n, fbShardURL: i } = await fetch("https://fb.blooket.com/c/firebase/join", { 
+                        method: 'PUT',
+                        body: JSON.stringify({ id: t, name: t }),
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    }).then(response => response.json());
+                    if (!r) return;
+                    const c = l + "-" + t.replace(" ", "-"),
+                        u = l.toLowerCase().replace(" ", "-");
+                    await l.me(), await l.me(), await l.me();
+                    const g = await firebase.initializeApp(
+                        {
+                            apiKey: "AIzaSyCA-cTOnX19f6LFnDVVsHXya3k6ByP_MnU",
+                            authDomain: "blooket-2020.firebaseapp.com",
+                            projectId: "blooket-2020",
+                            storageBucket: "blooket-2020.appspot.com",
+                            messagingSenderId: "741533559105",
+                            appId: "1:741533559105:web:b8cbb10e6123f2913519c0",
+                            measurementId: "G-S3H5NGN10Z",
+                            databaseURL: i,
+                        },
+                        u
+                    ),
+                    m = firebase.auth(g);
+                    await m.setPersistence(firebase.auth.Auth.Persistence.NONE).catch(console.error),
+                    await m.signInWithCustomToken(n).catch(console.error),
+                    await g
+                        .database()
+                        .ref(`${t}/c/${c}`)
+                        .set({ b: "Rainbow Astronaut", cr: 17e307, g: 17e307, f: 1 / 0, w: 17e307, d: 17e307, xp: 17e307, c: 17e307, ca: 17e307 }),
+                    g.delete();
+                };
+                
+                let t = new Image();
+                (t.src = "https://raw.githubusercontent.com/05Konz/Blooket-Cheats/main/autoupdate/timestamps/global/floodGame.png?" + Date.now()),
+                (t.crossOrigin = "Anonymous"),
+                (t.onload = function () {
+                    const o = document.createElement("canvas").getContext("2d");
+                    o.drawImage(t, 0, 0, this.width, this.height);
+                    let r,
+                        { data: n } = o.getImageData(0, 0, this.width, this.height),
+                        a = "";
+                    for (let e = 0; e < n.length; e += 4) {
+                        let t = String.fromCharCode(256 * n[e + 1] + n[e + 2]);
+                        if (((a += t), "/" == t && "*" == r)) break;
+                        r = t;
+                    }
+                    let s = document.querySelector("iframe");
+                    const [l, d, i] = a.match(/LastUpdated: (.+?); ErrorMessage: "([\s\S]+?)"/);
+                    (parseInt(d) <= 1708817191519 || s.contentWindow.confirm(i)) && e();
+                }),
+                (t.onerror = t.onabort = () => {
+                    (t.onerror = t.onabort = null),
+                        e(),
+                        document.querySelector("iframe").contentWindow.alert("It seems the GitHub is either blocked or down.\n\nIf it%27s NOT blocked, join the Discord server for updates\nhttps://discord.gg/jHjGrrdXP6");
+                });
+            });
+        })();
+    </script>
+</body>
+</html>
